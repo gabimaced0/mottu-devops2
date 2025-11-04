@@ -7,13 +7,13 @@ Integrantes
 - Gabrielly Campos Macedo — RM558962
 - Rafael Macoto Magalhães — RM554992
 
-Este backend Java permite gerenciar motos com integração ao **Azure SQL Database** e deploy em **Azure Container Instance (ACI)**, com imagem armazenada no **Azure Container Registry (ACR)**.
+Este backend Java permite gerenciar motos com integração ao **Azure SQL Database**. O deploy é automatizado através de um pipeline de **CI/CD** para o **Azure Web App**, utilizando uma imagem armazenada no **Azure Container Registry (ACR)**.
 
 ---
 
 ## Descrição da Solução
 
-Aplicação Java com API REST que realiza CRUD completo sobre a entidade **Moto**, permitindo cadastrar, listar, editar e excluir motos da base de dados. O backend foi containerizado e publicado no Azure.
+Aplicação Java com API REST que realiza um CRUD completo sobre a entidade **Moto**, permitindo cadastrar, listar, editar e excluir motos. A solução foi implantada no **Azure Web App para Contêineres**, utilizando um pipeline de **CI/CD (Integração Contínua e Entrega Contínua)** para automatizar os processos de build e deploy a partir do repositório.
 
 ---
 
@@ -25,47 +25,6 @@ Aplicação Java com API REST que realiza CRUD completo sobre a entidade **Moto*
 - Permite deploy rápido sem infraestrutura complexa (via ACI)
 
 ---
-
-## Banco de Dados em Nuvem (Azure SQL)
-
-- Banco: `db-mottu`
-- Server: `rm558962`
-- Usuário: `mottuuser`
-- Conexão: configurada via variável de ambiente `SPRING_DATASOURCE_URL`
-- Conexão JDBC (exemplo):
-
-```properties
-jdbc:sqlserver://rm558962.database.windows.net:1433;database=db-mottu;user=mottuuser@rm558962;password=SENHA_AQUI;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
-```
-
-## Como rodar
-
-Passos:
-1. Criar o Banco de Dados SQL na Azure
-
-2. Criar Azure Container Registry (ACR)
-
-3. Clonar repositório
-`https://github.com/RafaMacoto/SprintJavaPz.git`
-
-4. Fazer Login no Azure
-`az login`
-
-5. Abra o Docker Desktop
-
-6. Fazer login no ACR
-`az acr login --name mottuacr`
-
-7. Buildar e subir a imagem (TERMINAL)
-`docker build -t mottuacr.azurecr.io/mottu-backend:latest .`
-`docker push mottuacr.azurecr.io/mottu-backend:latest`
-
-8. Criar Azure Container Instance (ACI)
-`Imagem: mottuacr.azurecr.io/mottu-backend:latest`
-`Origem: Azure Container Registry`
-`Porta:8080`
-
-10. Acesse a URL pública do container + endpoint da sua API
 
 ## Testes
 
