@@ -2,7 +2,7 @@
 
 Repositório exclusivo para a entrega da Sprint 4 da disciplina **DevOps Tools & Cloud Computing**.
 
-Integrantes
+Integrantes - 2TDSPZ
 - Fernando Henrique Vilela Aguiar — RM557525
 - Gabrielly Campos Macedo — RM558962
 - Rafael Macoto Magalhães — RM554992
