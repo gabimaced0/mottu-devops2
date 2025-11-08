@@ -24,8 +24,7 @@ public class SecurityConfig {
     @Order(1) // PRIORIDADE MÁXIMA
     SecurityFilterChain apiSecurity(HttpSecurity http) throws Exception {
         return http
-                // Corresponde APENAS a requisições que começam com /api/
-                .securityMatcher("/api/**")
+                .securityMatcher("/api/**", "/insight/**") 
                 .csrf(csrf -> csrf.disable())
 
                 // Configurações RESTful: stateless, sem formLogin, sem redirecionamento
@@ -35,11 +34,7 @@ public class SecurityConfig {
                 )
 
                 .authorizeHttpRequests(auth -> auth
-                        // Endpoint de login da API
                         .requestMatchers(HttpMethod.POST, "/api/login").permitAll()
-                        // Endpoint /users (assumindo que é /api/users para a API)
-                        // Se /users for da API, ajuste para: .requestMatchers(HttpMethod.GET, "/api/users").permitAll()
-                        // Caso contrário, será tratado pela webSecurity
                         .anyRequest().authenticated()
                 )
 
